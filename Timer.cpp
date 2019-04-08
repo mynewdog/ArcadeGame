@@ -3,6 +3,7 @@
 //
 
 #include "Timer.h"
+#include <iostream>
 
 namespace EngineUtils {
     Timer *Timer::sInstance = nullptr;
@@ -23,8 +24,8 @@ namespace EngineUtils {
 
     Timer::Timer() {
         Reset();
-        mTimeScale = 1.0f;
-        mDeltaTime = std::chrono::duration<float>(0.0f);
+        m_time_scale = 1.0f;
+        m_delta_time = std::chrono::duration<float>(0.0f);
     }
 
     Timer::~Timer() {
@@ -32,26 +33,26 @@ namespace EngineUtils {
     }
 
     void Timer::Reset() {
-        mStartTime = std::chrono::system_clock::now();
+        m_start_time = std::chrono::system_clock::now();
     }
 
-    float Timer::deltaTime() {
-        return mDeltaTime.count();
+    float Timer::delta_time() {
+        return m_delta_time.count();
     }
 
-    void Timer::TimeScale(float t) {
-        mTimeScale = t;
+    void Timer::time_scale(float t) {
+        m_time_scale = t;
     }
 
-    float Timer::TimeScale() {
-        return mTimeScale;
+    float Timer::time_scale() {
+        return m_time_scale;
     }
 
     void Timer::Tick() {
-        mDeltaTime = std::chrono::system_clock::now() - mStartTime;
+        m_delta_time = std::chrono::system_clock::now() - m_start_time;
     }
 
-    float Timer::getFrameRate() {
-        return frameRate;
+    float Timer::get_frame_rate() {
+        return frame_rate;
     }
 }

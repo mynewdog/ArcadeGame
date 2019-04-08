@@ -7,13 +7,16 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <iostream>
+#include <iosfwd>
 
-class TextureManager {
-public:
-    static SDL_Texture* LoadTexture(std::string texture, SDL_Renderer* ren);
+namespace TextureUtils {
 
-};
+    class TextureManager {
+    public:
+        static SDL_Texture *load_texture(std::string texture, SDL_Renderer *ren);
+
+    };
+}
 
 
 #endif //ARCADEGAME_TEXTUREMANAGER_H

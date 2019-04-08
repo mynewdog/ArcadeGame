@@ -6,18 +6,20 @@
 #define ARCADEGAME_GAMEOBJECT_H
 
 
-#include <SDL_rect.h>
+#include <SDL2/SDL.h>
 #include "TextureManager.h"
+#include <iosfwd>
+#include <string>
 
 class GameObject {
 private:
     SDL_Rect srcRect, destRect;
-    TextureManager objectTexture;
+    TextureUtils::TextureManager objectTexture;
     int xPos, yPos;
     std::string objectName;
 
 public:
-    GameObject(TextureManager &objectTexture, SDL_Rect srcRect, SDL_Rect destRect, int xPos, int yPos, std::string &name);
+    explicit GameObject(TextureUtils::TextureManager &objectTexture, SDL_Rect srcRect, SDL_Rect destRect, int xPos, int yPos, std::string &name);
     ~GameObject();
     int getObjectPosX() { return xPos; };
     int getObjectPosY() { return yPos; };

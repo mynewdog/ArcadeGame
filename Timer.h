@@ -6,7 +6,7 @@
 #define ARCADEGAME_TIMER_H
 
 #include <chrono>
-#include <iostream>
+#include <iosfwd>
 
 
 namespace EngineUtils {
@@ -16,10 +16,10 @@ namespace EngineUtils {
     private:
         static Timer *sInstance;
 
-        std::chrono::system_clock::time_point mStartTime;
-        std::chrono::duration<float> mDeltaTime;
-        float mTimeScale;
-        float frameRate = 60.0f;
+        std::chrono::system_clock::time_point m_start_time;
+        std::chrono::duration<float> m_delta_time;
+        float m_time_scale;
+        float frame_rate = 60.0f;
 
     public:
         static Timer *Instance();
@@ -28,22 +28,23 @@ namespace EngineUtils {
 
         void Reset();
 
-        float deltaTime();
+        float delta_time();
 
-        void TimeScale(float t = 1.0f);
+        //What to use time_scale for?
 
-        float TimeScale();
+        void time_scale(float t = 1.0f);
+
+        float time_scale();
 
         void Tick();
 
-        float getFrameRate();
+        float get_frame_rate();
 
 
 
     private:
-        Timer();
+        explicit Timer();
         ~Timer();
-
 
     };
 

@@ -4,22 +4,22 @@
 
 int main(int argc, const char *argv[]) {
     EngineUtils::Timer* timer = EngineUtils::Timer::Instance();
-    Game* game = nullptr;
+    Game::Game* game = nullptr;
 
-    game = new Game();
+    game = new Game::Game();
 
-    game->initWindow("Vulfpeck", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+    game->init_window("Vulfpeck", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
     while(game ->running()) {
 
         timer->Tick();
 
-        if(timer->deltaTime() >= 1 / timer->getFrameRate()) {
-            //Not changing deltaTime when using reset()
+        if(timer->delta_time() >= 1 / timer->get_frame_rate()) {
+            //Not changing delta_time when using reset()
             timer->Reset();
-            //std::cout << timer->deltaTime() << std::endl;
+            //std::cout << timer->delta_time() << std::endl;
 
-            game->handleExitEvent();
+            game->handle_exit_event();
             game->update();
             game->render();
         }

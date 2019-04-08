@@ -8,27 +8,37 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <iosfwd>
 
-class Game {
-private:
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    SDL_Event event;
-    bool isRunning;
-    int counter{0};
+namespace Game {
 
-public:
-    Game();
-    ~Game();
+    class Game {
+    private:
+        SDL_Window *window;
+        SDL_Renderer *renderer;
+        SDL_Event event;
+        bool is_running;
+        int counter{0};
 
-    void handleExitEvent();
-    void initWindow(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
-    void update();
-    void render();
-    void clean();
-    bool running() { return isRunning; }
+    public:
+        explicit Game();
 
-};
+        ~Game();
+
+        void handle_exit_event();
+
+        void init_window(const char *title, int xpos, int ypos, int width, int height, bool fullscreen);
+
+        void update();
+
+        void render();
+
+        void clean();
+
+        bool running() { return is_running; }
+
+    };
+}
 
 
 #endif //ARCADEGAME_GAME_H

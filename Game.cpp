@@ -10,12 +10,13 @@ SDL_Texture *playerTexture;
 SDL_Texture *enemyTexture;
 SDL_Rect srcR, destR;
 
+using namespace Game {
 
 Game::Game() {};
 
 Game::~Game() {};
 
-void Game::initWindow(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
+void Game::init_window(const char *title, int xpos, int ypos, int width, int height, bool fullscreen) {
     Uint32 flags = 0;
     if (fullscreen) {
         flags = SDL_WINDOW_FULLSCREEN;
@@ -35,19 +36,19 @@ void Game::initWindow(const char *title, int xpos, int ypos, int width, int heig
             std::cout << "Renderer created" << std::endl;
         }
 
-        isRunning = true;
+        is_running = true;
     } else {
         std::cout << "Unable to initialize SDL: " << SDL_GetError() << std::endl;
-        isRunning = false;
+        is_running = false;
     }
 
 }
 
-void Game::handleExitEvent() {
+void Game::handle_exit_event() {
     SDL_PollEvent(&event);
     switch (event.type) {
         case SDL_QUIT:
-            isRunning = false;
+            is_running = false;
             break;
 
         default:
@@ -70,7 +71,7 @@ void Game::render() {
 
     /*This is where to  add stuff to render.
     First to get rendered is the background, then whatever comes after will be rendered on top*/
-    playerTexture = TextureManager::LoadTexture("textures/mario.png", renderer);
+    playerTexture = TextureUtils::TextureManager::load_texture("textures/mario.png", renderer);
     SDL_RenderCopy(renderer, playerTexture, NULL, &destR);
     // --- End of rendering textures ------
 
@@ -82,4 +83,5 @@ void Game::clean() {
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
     std::cout << "Game cleaned" << std::endl;
+}
 }
